@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "DancingScriptBold";
+    src: url('../../../assets/fonts/DancingScript-Bold.ttf');
+}
+
+@font-face {
+    font-family: "ComfortaaRegular";
+    src: url('../../../assets/fonts/Comfortaa-Regular.ttf');
+}
+
+#home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #1D4E6C;
+    font-family: "ComfortaaRegular", monospace;
+}
+
+#home > h1 {
+    font-size: 5rem;
+    color: #caa85f;
+    font-family: "DancingScriptBold", monospace ;
+    text-shadow: 0px 2px 5px #000000;
+}
+#home > p{
+    font-size: 1rem;
+    color: #ffff;
+    font-style: italic;
+}
+
+#home > button{
+    padding: 15px 50px;
+    background-color: #caa85f;
+    border: none;
+    color: #ffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-family: "ComfortaaRegular", monospace;
+    box-shadow: 0px 0px 5px rgba(0,0,0,.5);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+#home > button:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 5px #caa85f;
+}
+
+
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mat-raised-button.mat-primary{
+    background-color: #1D4E6C;
+}
+.mat-raised-button.mat-primary:disabled{
+    background-color: #f5f5f5;
+}

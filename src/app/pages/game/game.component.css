@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "DancingScriptBold";
+    src: url('../../../assets/fonts/DancingScript-Bold.ttf');
+}
+
+@font-face {
+    font-family: "ComfortaaRegular";
+    src: url('../../../assets/fonts/Comfortaa-Regular.ttf');
+}
+
+#game{
+    max-width: 100%;
+    padding: 40px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: #1D4E6C;
+    font-family: "ComfortaaRegular", monospace;
+}
+
+#game > h1 {
+    font-size: 5rem;
+    color: #caa85f;
+    font-family: "DancingScriptBold", monospace ;
+    text-shadow: 0px 2px 5px #000000;
+}
+#game > p{
+    font-size: 1rem;
+    color: #ffff;
+    font-style: italic;
+}
+
+.game-container{
+    width: 50%;
+    min-height: 50%;
+    padding: 40px;
+    margin-top: 80px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px #000000;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+
+.answer-label{
+    font-weight: bold;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
