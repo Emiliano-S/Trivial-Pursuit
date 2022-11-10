@@ -47,12 +47,12 @@ export class HomeComponent implements OnInit {
     this.useFormVisible = true;
   }
 
-  logOutUser() {
-    this.auth.logOutUser();
-  }
-
   hideUserForm() {
     this.useFormVisible = false;
+  }
+
+  tryAgain() {
+    this.router.navigate(['/game']);
   }
 
   onSubmit(form: NgForm) {

@@ -40,18 +40,4 @@ export class AuthService {
   getLoggedIn() {
     return this.isLoggedIn;
   }
-
-  logOutUser() {
-    localStorage.removeItem('user');
-    this.user = {
-      username: '',
-      difficulty: '',
-      category: '',
-      categoryName: '',
-      score: 0,
-      questions: [],
-    };
-    this.setLoggedIn(false);
-    this.router.navigate(['']);
-  }
 }

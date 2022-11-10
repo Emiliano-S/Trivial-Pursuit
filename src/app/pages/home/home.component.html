@@ -2,7 +2,7 @@
   <h1>Trivial Pursuit</h1>
   <p>Show your skills and knowledge!</p>
 
-  <ng-container *ngIf="isLoggedIn">
+  <ng-container *ngIf="isLoggedIn; else elseBlock">
     <p style="text-align: center; font-style: normal">
       Welcome back
       <strong>{{ user.username }}</strong
@@ -15,9 +15,11 @@
       <strong style="color: #caa85f">{{ user.categoryName }}</strong>
     </p>
   </ng-container>
-  <div class="buttons-row">
-    <button (click)="showUserForm()" #elseBlock>Play</button>
-  </div>
+  <ng-template #elseBlock>
+    <div class="buttons-row">
+      <button (click)="showUserForm()" #elseBlock>Play</button>
+    </div>
+  </ng-template>
 
   <div class="fullscreen" *ngIf="useFormVisible">
     <div class="popUp">
