@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     username: '',
     difficulty: '',
     category: '',
+    categoryName: '',
     score: 0,
     questions: [],
   };
@@ -58,7 +59,14 @@ export class HomeComponent implements OnInit {
     const formData = form.value;
     localStorage.setItem(
       'user',
-      JSON.stringify({ ...formData, score: 0, questions: [] })
+      JSON.stringify({
+        ...formData,
+        categoryName: this.categoriesGames.find(
+          (category: any) => category.id == formData.category
+        ).name,
+        score: 0,
+        questions: [],
+      })
     );
     this.auth.setUser();
     this.auth.setLoggedIn(true);

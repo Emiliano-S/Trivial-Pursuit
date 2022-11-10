@@ -1,15 +1,23 @@
 <section id="home">
   <h1>Trivial Pursuit</h1>
   <p>Show your skills and knowledge!</p>
-  <ng-container *ngIf="isLoggedIn; else elseBlock">
-    <p>
-      Welcome back <strong>{{ user.username }}</strong>
+
+  <ng-container *ngIf="isLoggedIn">
+    <p style="text-align: center; font-style: normal">
+      Welcome back
+      <strong>{{ user.username }}</strong
+      ><br />
+      your last correct answers were
+      <strong [ngStyle]="{ color: user.score < 6 ? '#ff3434' : '#46b336' }"
+        >{{ user.score }} over 10</strong
+      >
+      in the category
+      <strong style="color: #caa85f">{{ user.categoryName }}</strong>
     </p>
-    <button (click)="logOutUser()" #thenBlock>Log out</button>
   </ng-container>
-  <ng-template #elseBlock>
+  <div class="buttons-row">
     <button (click)="showUserForm()" #elseBlock>Play</button>
-  </ng-template>
+  </div>
 
   <div class="fullscreen" *ngIf="useFormVisible">
     <div class="popUp">
@@ -18,7 +26,14 @@
         <div class="form-row">
           <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
-            <input matInput name="username" ngModel required minlength="4" />
+            <input
+              matInput
+              name="username"
+              ngModel
+              required
+              minlength="4"
+              placeholder="{{ user.username }}"
+            />
           </mat-form-field>
         </div>
         <div class="form-row" style="padding-bottom: 20px">

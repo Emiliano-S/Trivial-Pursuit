@@ -1,24 +1,56 @@
 <section id="game">
-    <mat-toolbar style="position:fixed; top: 0px; z-index: 100;">
-        <span>Trivial Pursuit</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-          <mat-icon>settings</mat-icon>
-        </button>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-          <mat-icon>logout</mat-icon>
-        </button>
-      </mat-toolbar>
+  <mat-toolbar
+    style="
+      position: fixed;
+      top: 0px;
+      z-index: 100;
+      background-color: #ffffff;
+      box-shadow: 0px 0px 5px #000000;
+    "
+  >
+    <span class="example-spacer">
+      <div>
+        <span style="font-weight: bold">Category:</span>
+        "{{ user.categoryName }}"
+      </div>
+      <div>
+        <span style="font-weight: bold">Difficulty:</span>
+        {{ user.difficulty.toUpperCase() }}
+      </div>
+    </span>
+  </mat-toolbar>
 
-    <div class="game-container">
-        <form #gameForm="ngForm" (ngSubmit)="onSubmit(gameForm)">
-            <div class="form-row" style="padding-bottom: 20px;" *ngFor="let question of questions; index as i">
-                <label class="answer-label">{{question.question}}</label>
-                <mat-radio-group aria-label="Select an answer"  name="{{i}}" style="display: flex; flex-direction: column; gap: 10px;" required [ngModel]>
-                    <mat-radio-button *ngFor="let answer of question.options" value="{{answer}}">{{answer}}</mat-radio-button>
-                </mat-radio-group>
-            </div>
-            <button type="submit" mat-raised-button color="primary" [disabled]="!gameForm.valid" style="height: 50px;">SUBMIT</button>
-        </form>
-    </div>
+  <div class="game-container">
+    <form #gameForm="ngForm" (ngSubmit)="onSubmit(gameForm)">
+      <div
+        class="form-row"
+        style="padding-bottom: 20px"
+        *ngFor="let question of questions; index as i"
+      >
+        <label class="answer-label">{{ question.question }}</label>
+        <mat-radio-group
+          aria-label="Select an answer"
+          name="{{ i }}"
+          style="display: flex; flex-direction: column; gap: 10px"
+          required
+          [ngModel]
+        >
+          <mat-radio-button
+            *ngFor="let answer of question.options"
+            value="{{ answer }}"
+            >{{ answer }}</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="!gameForm.valid"
+        style="height: 50px"
+      >
+        SUBMIT
+      </button>
+    </form>
+  </div>
 </section>

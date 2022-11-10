@@ -1,28 +1,45 @@
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { GameService } from 'src/app/service/game.service';
+import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css'],
 })
-export class GameComponent implements OnInit {
-  user: any = null;
+export class GameComponent implements OnInit, OnChanges, DoCheck {
+  user: User = {
+    username: '',
+    difficulty: '',
+    category: '',
+    categoryName: '',
+    score: 0,
+    questions: [],
+  };
   questions: any = null;
 
   constructor(private game: GameService, private auth: AuthService) {}
 
   ngOnInit(): void {
     this.user = this.auth.getUser();
+
     this.game
       .getRequests(this.user.category, this.user.difficulty)
       .subscribe((data: any) => {
         this.questions = data.results.map((element: any) => {
           element.question = element.question
             .replace(/&quot;/g, '"')
-            .replace(/&#039;/g, "'");
+            .replace(/&#039;/g, "'")
+            .replace(/&shy;/g, '-');
           return (element = {
             ...element,
             options: [
@@ -34,6 +51,10 @@ export class GameComponent implements OnInit {
         });
       });
   }
+
+  ngDoCheck(): void {}
+
+  ngOnChanges(changes: SimpleChanges): void {}
 
   onSubmit(form: NgForm) {
     let score: number = 0;

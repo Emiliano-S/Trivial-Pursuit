@@ -16,12 +16,14 @@ import {MatButtonModule} from '@angular/material/button';
 import { GameComponent } from './pages/game/game.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    GameComponent
+    GameComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

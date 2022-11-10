@@ -1,7 +1,8 @@
-export interface User{
-    username: string,
-    difficulty: string,
-    category: string,
-    score: number,
-    questions: []
+export interface User {
+  username: string;
+  difficulty: string;
+  category: string;
+  categoryName: string;
+  score: number;
+  questions: [];
 }
