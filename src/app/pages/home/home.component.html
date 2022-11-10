@@ -29,15 +29,14 @@
     <div class="popUp">
       <div class="popUpCloser" (click)="hideUserForm()">X</div>
 
-      <form #homeUserForm="ngForm" (ngSubmit)="onSubmit(homeUserForm)">
+      <form  [formGroup]="newGameForm" (ngSubmit)="onSubmit()">
         <div class="form-row">
           <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
             <input
               matInput
               name="username"
-              ngModel
-              required
+              formControlName="username"
               minlength="4"
             />
           </mat-form-field>
@@ -48,8 +47,7 @@
             aria-label="Select an option"
             aria-labelledby="difficulty-label"
             name="difficulty"
-            required
-            [ngModel]
+            formControlName="difficulty"
           >
             <mat-radio-button value="easy">Easy</mat-radio-button>
             <mat-radio-button value="medium">Medium</mat-radio-button>
@@ -59,7 +57,7 @@
         <div class="form-row">
           <mat-form-field appearance="fill">
             <mat-label>Choose your category</mat-label>
-            <mat-select ngModel required name="category">
+            <mat-select formControlName="category" name="category">
               <mat-option
                 *ngFor="let category of categoriesGames"
                 value="{{ category.id }}"
@@ -71,8 +69,8 @@
         <button
           mat-raised-button
           color="primary"
-          [disabled]="!homeUserForm.valid"
           style="height: 50px"
+          [disabled]="!newGameForm.valid"
         >
           PLAY
         </button>

@@ -2,29 +2,20 @@ import { NgForm } from '@angular/forms';
 import {
   Component,
   DoCheck,
-  OnChanges,
   OnInit,
-  SimpleChanges,
 } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { GameService } from 'src/app/service/game.service';
 import { User } from 'src/app/models/user';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css'],
 })
-export class GameComponent implements OnInit, OnChanges, DoCheck {
-  user: User = {
-    username: '',
-    difficulty: '',
-    category: '',
-    categoryName: '',
-    score: 0,
-    questions: [],
-  };
+export class GameComponent implements OnInit, DoCheck {
+  user: User;
   questions: any;
   isLoading: Boolean = true;
 
@@ -58,8 +49,6 @@ export class GameComponent implements OnInit, OnChanges, DoCheck {
       this.isLoading = false;
     }
   }
-
-  ngOnChanges(changes: SimpleChanges): void {}
 
   onSubmit(form: NgForm) {
     let score: number = 0;

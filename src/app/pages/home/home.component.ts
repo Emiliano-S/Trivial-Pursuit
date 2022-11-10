@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/models/user';
@@ -11,19 +11,10 @@ import { CategoryService } from 'src/app/service/category.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  newGameForm: FormGroup | undefined;
-
-
-  useFormVisible = false;
+  newGameForm: FormGroup;
+  useFormVisible: boolean = false;
   categoriesGames: any;
-  user: User = {
-    username: '',
-    difficulty: '',
-    category: '',
-    categoryName: '',
-    score: 0,
-    questions: [],
-  };
+  user: User;
   isLoggedIn: boolean = false;
 
   constructor(
@@ -34,9 +25,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.newGameForm = new FormGroup({
-      username: new FormControl(),
-      difficulty: new FormControl(),
-      category: new FormControl(),
+      username: new FormControl(this.auth.getUser().username, Validators.required),
+      difficulty: new FormControl(null,Validators.required),
+      category: new FormControl(null,Validators.required),
     })
 
     this.categories.getCategory().subscribe((data: any) => {
@@ -64,8 +55,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/game']);
   }
 
-  onSubmit(form: NgForm) {
-    const formData = form.value;
+  onSubmit() {
+    const formData = this.newGameForm.value;
     localStorage.setItem(
       'user',
       JSON.stringify({
