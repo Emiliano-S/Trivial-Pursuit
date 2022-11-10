@@ -1,45 +1,61 @@
 <section id="home">
-    <h1>Trivial Pursuit</h1>
-    <p>Show your skills and knowledge!</p>
-    <ng-container *ngIf="isLoggedIn; else elseBlock">
-        <p>Welcome back <strong>{{user.username}}</strong></p>
-        <button (click)="logOutUser()" #thenBlock>Log out</button>
-    </ng-container>
-    <ng-template #elseBlock>
-        <button (click)="showUserForm()" #elseBlock>Play</button>
-    </ng-template>
+  <h1>Trivial Pursuit</h1>
+  <p>Show your skills and knowledge!</p>
+  <ng-container *ngIf="isLoggedIn; else elseBlock">
+    <p>
+      Welcome back <strong>{{ user.username }}</strong>
+    </p>
+    <button (click)="logOutUser()" #thenBlock>Log out</button>
+  </ng-container>
+  <ng-template #elseBlock>
+    <button (click)="showUserForm()" #elseBlock>Play</button>
+  </ng-template>
 
-
-    <div class="fullscreen" *ngIf="useFormVisible;">
-        <div class="popUp">
-            <div class="popUpCloser" (click)="hideUserForm()">
-                X
-            </div>
-            <form #homeUserForm="ngForm" (ngSubmit)="onSubmit(homeUserForm)">
-                <div class="form-row">
-                    <mat-form-field appearance="fill">
-                        <mat-label>Username</mat-label>
-                        <input matInput name="username" ngModel required minlength="4">
-                    </mat-form-field>
-                </div>
-                <div class="form-row" style="padding-bottom: 20px;">
-                    <label id="ifficulty-label">Choose your difficulty</label>
-                    <mat-radio-group aria-label="Select an option" aria-labelledby="difficulty-label" name="difficulty" required [ngModel]>
-                        <mat-radio-button value="easy">Easy</mat-radio-button>
-                        <mat-radio-button value="medium">Medium</mat-radio-button>
-                        <mat-radio-button value="hard">Hard</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-                <div class="form-row">
-                    <mat-form-field appearance="fill">
-                    <mat-label>Choose your category</mat-label>
-                    <mat-select ngModel required name="category">
-                        <mat-option *ngFor="let category of categoriesGames" value="{{category.id}}">{{category.name}}</mat-option>
-                    </mat-select>
-                    </mat-form-field>
-                </div>
-                <button mat-raised-button color="primary" [disabled]="!homeUserForm.valid" style="height: 50px;">PLAY</button>
-            </form>
+  <div class="fullscreen" *ngIf="useFormVisible">
+    <div class="popUp">
+      <div class="popUpCloser" (click)="hideUserForm()">X</div>
+      <form #homeUserForm="ngForm" (ngSubmit)="onSubmit(homeUserForm)">
+        <div class="form-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input matInput name="username" ngModel required minlength="4" />
+          </mat-form-field>
         </div>
+        <div class="form-row" style="padding-bottom: 20px">
+          <label id="ifficulty-label">Choose your difficulty</label>
+          <mat-radio-group
+            aria-label="Select an option"
+            aria-labelledby="difficulty-label"
+            name="difficulty"
+            required
+            [ngModel]
+          >
+            <mat-radio-button value="easy">Easy</mat-radio-button>
+            <mat-radio-button value="medium">Medium</mat-radio-button>
+            <mat-radio-button value="hard">Hard</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Choose your category</mat-label>
+            <mat-select ngModel required name="category">
+              <mat-option
+                *ngFor="let category of categoriesGames"
+                value="{{ category.id }}"
+                >{{ category.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!homeUserForm.valid"
+          style="height: 50px"
+        >
+          PLAY
+        </button>
+      </form>
     </div>
+  </div>
 </section>
