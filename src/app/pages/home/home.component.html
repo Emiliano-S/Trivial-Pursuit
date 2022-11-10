@@ -14,10 +14,14 @@
       in the category
       <strong style="color: #caa85f">{{ user.categoryName }}</strong>
     </p>
+    <div class="buttons-row">
+      <button (click)="showUserForm()">New Game</button>
+      <button (click)="tryAgain()">Try Again</button>
+    </div>
   </ng-container>
   <ng-template #elseBlock>
     <div class="buttons-row">
-      <button (click)="showUserForm()" #elseBlock>Play</button>
+      <button (click)="showUserForm()">Play</button>
     </div>
   </ng-template>
 

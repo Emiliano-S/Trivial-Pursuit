@@ -20,37 +20,49 @@
     </span>
   </mat-toolbar>
 
-  <div class="game-container">
-    <form #gameForm="ngForm" (ngSubmit)="onSubmit(gameForm)">
-      <div
-        class="form-row"
-        style="padding-bottom: 20px"
-        *ngFor="let question of questions; index as i"
-      >
-        <label class="answer-label">{{ question.question }}</label>
-        <mat-radio-group
-          aria-label="Select an answer"
-          name="{{ i }}"
-          style="display: flex; flex-direction: column; gap: 10px"
-          required
-          [ngModel]
+  <ng-component *ngIf="isLoading; then ifBlock; else elseBlock"> </ng-component>
+  <ng-template #ifBlock>
+    <div class="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </ng-template>
+
+  <ng-template #elseBlock>
+    <div class="game-container">
+      <form #gameForm="ngForm" (ngSubmit)="onSubmit(gameForm)">
+        <div
+          class="form-row"
+          style="padding-bottom: 20px"
+          *ngFor="let question of questions; index as i"
         >
-          <mat-radio-button
-            *ngFor="let answer of question.options"
-            value="{{ answer }}"
-            >{{ answer }}</mat-radio-button
+          <label class="answer-label">{{ question.question }}</label>
+          <mat-radio-group
+            aria-label="Select an answer"
+            name="{{ i }}"
+            style="display: flex; flex-direction: column; gap: 10px"
+            required
+            [ngModel]
           >
-        </mat-radio-group>
-      </div>
-      <button
-        type="submit"
-        mat-raised-button
-        color="primary"
-        [disabled]="!gameForm.valid"
-        style="height: 50px"
-      >
-        SUBMIT
-      </button>
-    </form>
-  </div>
+            <mat-radio-button
+              *ngFor="let answer of question.options"
+              value="{{ answer }}"
+              >{{ answer }}</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+        <button
+          type="submit"
+          mat-raised-button
+          color="primary"
+          [disabled]="!gameForm.valid"
+          style="height: 50px"
+        >
+          SUBMIT
+        </button>
+      </form>
+    </div>
+  </ng-template>
 </section>

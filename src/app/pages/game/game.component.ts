@@ -25,7 +25,8 @@ export class GameComponent implements OnInit, OnChanges, DoCheck {
     score: 0,
     questions: [],
   };
-  questions: any = null;
+  questions: any;
+  isLoading: Boolean = true;
 
   constructor(private game: GameService, private auth: AuthService) {}
 
@@ -52,7 +53,11 @@ export class GameComponent implements OnInit, OnChanges, DoCheck {
       });
   }
 
-  ngDoCheck(): void {}
+  ngDoCheck(): void {
+    if (this.questions.length > 0) {
+      this.isLoading = false;
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges): void {}
 
