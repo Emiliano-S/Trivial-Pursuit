@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/models/user';
@@ -11,6 +11,9 @@ import { CategoryService } from 'src/app/service/category.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  newGameForm: FormGroup | undefined;
+
+
   useFormVisible = false;
   categoriesGames: any;
   user: User = {
@@ -30,6 +33,12 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.newGameForm = new FormGroup({
+      username: new FormControl(),
+      difficulty: new FormControl(),
+      category: new FormControl(),
+    })
+
     this.categories.getCategory().subscribe((data: any) => {
       this.categoriesGames = Object.keys(data).map((key) => {
         return data[key];

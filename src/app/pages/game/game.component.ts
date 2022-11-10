@@ -54,7 +54,7 @@ export class GameComponent implements OnInit, OnChanges, DoCheck {
   }
 
   ngDoCheck(): void {
-    if (this.questions.length > 0) {
+    if (this.questions != undefined) {
       this.isLoading = false;
     }
   }

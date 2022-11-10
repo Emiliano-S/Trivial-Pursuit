@@ -7,10 +7,10 @@
       Welcome back
       <strong>{{ user.username }}</strong
       ><br />
-      your last correct answers were
+      in the last game you guessed
       <strong [ngStyle]="{ color: user.score < 6 ? '#ff3434' : '#46b336' }"
-        >{{ user.score }} over 10</strong
-      >
+        >{{ user.score }} out of 10</strong
+      > questions
       in the category
       <strong style="color: #caa85f">{{ user.categoryName }}</strong>
     </p>
@@ -28,6 +28,7 @@
   <div class="fullscreen" *ngIf="useFormVisible">
     <div class="popUp">
       <div class="popUpCloser" (click)="hideUserForm()">X</div>
+
       <form #homeUserForm="ngForm" (ngSubmit)="onSubmit(homeUserForm)">
         <div class="form-row">
           <mat-form-field appearance="fill">
@@ -38,7 +39,6 @@
               ngModel
               required
               minlength="4"
-              placeholder="{{ user.username }}"
             />
           </mat-form-field>
         </div>
